@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<realm>
+    <sec:authentication-provider xsi:type="wls:default-authenticatorType">
+        <sec:name>DefaultAuthenticator</sec:name>
+        <sec:control-flag>SUFFICIENT</sec:control-flag>
+    </sec:authentication-provider>
+    <sec:authentication-provider xsi:type="wls:sql-authenticatorType">
+        <sec:name>OEAuthenticator</sec:name>
+        <sec:control-flag>SUFFICIENT</sec:control-flag>
+        <wls:data-source-name>jdbc/OE</wls:data-source-name>
+        <wls:plaintext-passwords-enabled>true</wls:plaintext-passwords-enabled>
+        <wls:descriptions-supported>false</wls:descriptions-supported>
+
+        <wls:sql-get-users-password>SELECT CUSTOMER_PASSWORD.CUSTPWD_PASSWORD FROM CUSTOMER_PASSWORD, CUSTOMERS WHERE CUSTOMERS.CUSTOMER_ID=CUSTOMER_PASSWORD.CUSTPWD_CUSTID and CUSTOMERS.CUST_EMAIL= ?</wls:sql-get-users-password>
+        <wls:sql-set-user-password>UPDATE CUSTOMER_PASSWORD SET CUSTOMER_PASSWORD.CUSTPWD_PASSWORD = ? WHERE CUSTOMER_PASSWORD.CUSTPWD_CUSTID = (SELECT CUSTOMERS.CUSTOMER_ID FROM  CUSTOMERS where CUSTOMERS.CUST_EMAIL=?)</wls:sql-set-user-password>
+        <wls:sql-user-exists>SELECT CUSTOMERS.CUST_EMAIL FROM  CUSTOMERS where CUSTOMERS.CUST_EMAIL=?</wls:sql-user-exists>
+        <wls:sql-list-users>SELECT CUSTOMERS.CUST_EMAIL FROM  CUSTOMERS where CUSTOMERS.CUST_EMAIL LIKE ?</wls:sql-list-users>
+
+        <wls:sql-create-user></wls:sql-create-user>
+        <wls:sql-remove-user></wls:sql-remove-user>
+
+        <wls:sql-list-groups>SELECT SG_NAME FROM SECURITY_GROUPS WHERE SG_NAME like ?</wls:sql-list-groups>
+        <wls:sql-group-exists>SELECT SG_NAME FROM SECURITY_GROUPS WHERE SG_NAME = ?</wls:sql-group-exists>
+
+        <wls:sql-create-group></wls:sql-create-group>
+        <wls:sql-remove-group></wls:sql-remove-group>
+
+        <wls:sql-is-member>SELECT c.cust_email FROM Customers c,Security_Groups sg, Customers_Group cg WHERE c.customer_id=cg.csg_cust_id and cg.csg_sg_id=sg.sg_id AND sg.sg_name=? and c.cust_email=?</wls:sql-is-member>
+        <wls:sql-list-member-groups>SELECT sg.sg_name FROM Customers c,Security_Groups sg, Customers_Group cg WHERE c.customer_id=cg.csg_cust_id and cg.csg_sg_id=sg.sg_id and c.cust_email=?</wls:sql-list-member-groups>
+        <wls:sql-list-group-members>SELECT c.cust_email FROM Customers c,Security_Groups sg, Customers_Group cg WHERE c.customer_id=cg.csg_cust_id and cg.csg_sg_id=sg.sg_id AND sg.sg_name=? and c.cust_email like ?</wls:sql-list-group-members>
+
+        
+        <wls:sql-remove-group-memberships></wls:sql-remove-group-memberships>
+        <wls:sql-add-member-to-group></wls:sql-add-member-to-group>
+        <wls:sql-remove-member-from-group></wls:sql-remove-member-from-group>
+        <wls:sql-remove-group-member></wls:sql-remove-group-member>
+
+        <wls:sql-get-user-description></wls:sql-get-user-description>
+        <wls:sql-set-user-description></wls:sql-set-user-description>
+        <wls:sql-get-group-description></wls:sql-get-group-description>
+        <wls:sql-set-group-description></wls:sql-set-group-description>
+    </sec:authentication-provider>
+    <sec:authentication-provider xsi:type="wls:default-identity-asserterType">
+        <sec:name>DefaultIdentityAsserter</sec:name>
+        <sec:active-type>AuthenticatedUser</sec:active-type>
+    </sec:authentication-provider>
+    <sec:role-mapper xmlns:xac="http://xmlns.oracle.com/weblogic/security/xacml" xsi:type="xac:xacml-role-mapperType">
+        <sec:name>XACMLRoleMapper</sec:name>
+    </sec:role-mapper>
+    <sec:authorizer xmlns:xac="http://xmlns.oracle.com/weblogic/security/xacml" xsi:type="xac:xacml-authorizerType">
+        <sec:name>XACMLAuthorizer</sec:name>
+    </sec:authorizer>
+    <sec:adjudicator xsi:type="wls:default-adjudicatorType">
+        <sec:name>DefaultAdjudicator</sec:name>
+    </sec:adjudicator>
+    <sec:credential-mapper xsi:type="wls:default-credential-mapperType">
+        <sec:name>DefaultCredentialMapper</sec:name>
+    </sec:credential-mapper>
+    <sec:cert-path-provider xsi:type="wls:web-logic-cert-path-providerType">
+        <sec:name>WebLogicCertPathProvider</sec:name>
+    </sec:cert-path-provider>
+    <sec:cert-path-builder>WebLogicCertPathProvider</sec:cert-path-builder>
+    <sec:name>oow14hol9458realm</sec:name>
+    <sec:password-validator xmlns:pas="http://xmlns.oracle.com/weblogic/security/providers/passwordvalidator" xsi:type="pas:system-password-validatorType">
+        <sec:name>SystemPasswordValidator</sec:name>
+        <pas:min-password-length>8</pas:min-password-length>
+        <pas:min-numeric-or-special-characters>1</pas:min-numeric-or-special-characters>
+    </sec:password-validator>
+</realm>

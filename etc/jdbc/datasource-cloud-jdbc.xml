@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jdbc-data-source xmlns="http://xmlns.oracle.com/weblogic/jdbc-data-source">
+    <name>jdbc/OE</name>
+    <jdbc-driver-params>
+        <url>jdbc:oracle:thin:@//oow14hol9458-db:1521/PDB1.compute-staug305744476.oraclecloud.internal</url>
+        <driver-name>oracle.jdbc.xa.client.OracleXADataSource</driver-name>
+        <properties>
+            <property>
+                <name>user</name>
+                <value>oe</value>
+            </property>
+        </properties>
+        <!-- password for 'welcome1' -->
+        <!-- you must ssh and as sudo, run java weblogic.security.Encrypt to get the encrypted password -->
+        <password-encrypted>{AES}JX79l7OLD3zTYKBf9HEXytpfhtAMmTm2ceLo1zz2A+w=</password-encrypted>
+    </jdbc-driver-params>
+    <jdbc-data-source-params>
+        <jndi-name>jdbc/OE</jndi-name>
+    </jdbc-data-source-params>
+</jdbc-data-source>
