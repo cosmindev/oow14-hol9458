@@ -9,7 +9,7 @@ import org.junit.runners.Suite.SuiteClasses;
 //4thchange
 //linuxupdate
 @RunWith(Suite.class)
-@SuiteClasses({ TestCustomersBean.class, TestOrdersBean.class })
+@SuiteClasses({ TestCustomersBean.class, TestOrdersBean.class, TestMock.class })
 public class AllTests {
 
 }
