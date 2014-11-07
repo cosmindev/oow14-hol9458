@@ -7,6 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 //3rdchange
 //2ndchange
 //4thchange
+//linuxupdate
 @RunWith(Suite.class)
 @SuiteClasses({ TestCustomersBean.class, TestOrdersBean.class })
 public class AllTests {
