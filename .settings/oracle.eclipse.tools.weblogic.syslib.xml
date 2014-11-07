@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system-libraries>
+    <library javadoc="http://docs.oracle.com/javaee/6/api/" path="server/lib/api.jar"/>
+    <library javadoc="http://docs.oracle.com/cd/E24329_01/apirefs.1211/e24391" path="server/lib/wls-api.jar"/>
+    <module id="jersey-client"/>
+    <module id="jersey-json"/>
+    <module id="jersey-core"/>
+    <module id="jersey-server"/>
+    <module id="jersey-servlet"/>
+    <module id="jersey-multipart"/>
+    <module id="jettison"/>
+    <module id="jackson-core-asl"/>
+    <module id="jackson-jaxrs"/>
+    <module id="jackson-mapper-asl"/>
+    <module id="jackson-xc"/>
+    <module id="asm"/>
+</system-libraries>
