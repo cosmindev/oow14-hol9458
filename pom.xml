@@ -12,11 +12,11 @@
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<wls-middlewareHome>/media/u01/JCS/wls12120</wls-middlewareHome>
-		<wls-targets>AdminServer</wls-targets>
-		<wls-adminurl>t3://localhost:7001</wls-adminurl>
+		<wls-middlewareHome>/u01/data/domains/venkyjcs_domain</wls-middlewareHome>
+		<wls-targets>venkyjcs_cluster</wls-targets>
+		<wls-adminurl>t3://localhost:9001</wls-adminurl>
 		<wls-user>weblogic</wls-user>
-		<wls-password>welcome1</wls-password>
+		<wls-password>Welcome2Cloud#</wls-password>
 		<wls-name>${project.build.finalName}</wls-name>
 		<wls-source>${project.build.directory}/${project.build.finalName}.${project.packaging}</wls-source>
 	</properties>
