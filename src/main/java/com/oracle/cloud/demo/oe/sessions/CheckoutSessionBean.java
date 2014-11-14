@@ -4,26 +4,37 @@ import com.oracle.cloud.demo.oe.entities.Customer;
 import com.oracle.cloud.demo.oe.entities.Order;
 import com.oracle.cloud.demo.oe.entities.OrderItem;
 import com.oracle.cloud.demo.oe.web.util.BasketItem;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.faces.bean.SessionScoped;
+
+
 
 @Stateless
-public class CheckoutSessionBean {
+public class CheckoutSessionBean implements Serializable,CheckoutSessionBeanRemote{
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@EJB
+    CustomersFacadeRemote<Customer> customerDao;
 
     @EJB
-    CustomersFacade customerDao;
+    OrdersFacadeRemote orderDao;
 
     @EJB
-    OrdersFacade orderDao;
+    OrderItemsFacadeRemote<OrderItem> orderItemDao;
 
     @EJB
-    OrderItemsFacade orderItemDao;
-
-    @EJB
-    ProductInformationFacade productInformationDao;
+    ProductInformationFacadeRemote productInformationDao;
 
     public Order checkout(String user, List<BasketItem> basketItems) {
 
@@ -61,7 +72,7 @@ public class CheckoutSessionBean {
         return order;
     }
 
-    private BigDecimal calculateTotal(List<BasketItem> basketItems) {
+    public BigDecimal calculateTotal(List<BasketItem> basketItems) {
         BigDecimal total = BigDecimal.ZERO;
         for (BasketItem bi : basketItems) {
             total = total.add(bi.getSubtotal());

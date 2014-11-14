@@ -2,11 +2,14 @@ package com.oracle.cloud.demo.oe.web;
 
 import com.oracle.cloud.demo.oe.entities.Order;
 import com.oracle.cloud.demo.oe.sessions.CheckoutSessionBean;
+import com.oracle.cloud.demo.oe.sessions.CheckoutSessionBeanRemote;
 import com.oracle.cloud.demo.oe.web.util.BasketItem;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -27,7 +30,7 @@ public class BasketController implements Serializable {
     private OrdersController ordersController;
 
     @EJB
-    CheckoutSessionBean checkoutBean;
+    CheckoutSessionBeanRemote checkoutBean;
 
     public BigDecimal getTotal() {
         return total;

@@ -26,7 +26,7 @@ public class OrderItemsController implements Serializable {
     private OrderItem current;
     private DataModel items = null;
     @EJB
-    private com.oracle.cloud.demo.oe.sessions.OrderItemsFacade ejbFacade;
+    private com.oracle.cloud.demo.oe.sessions.OrderItemsFacadeRemote<OrderItem> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -43,7 +43,7 @@ public class OrderItemsController implements Serializable {
     }
 
     private OrderItemsFacade getFacade() {
-        return ejbFacade;
+        return (OrderItemsFacade) ejbFacade;
     }
 
     public PaginationHelper getPagination() {

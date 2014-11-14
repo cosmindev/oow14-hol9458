@@ -1,13 +1,19 @@
 package com.oracle.cloud.demo.oe.entities;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class SessionOrderObject {
+public class SessionOrderObject implements Serializable{
 
-    String productName;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String productName;
     int productId;
     int quantity;
     BigDecimal price;

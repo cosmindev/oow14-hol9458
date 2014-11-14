@@ -1,19 +1,25 @@
 package com.oracle.cloud.demo.oe.sessions;
 
+import java.io.Serializable;
 import java.util.List;
+
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+public abstract class AbstractFacade<T>  implements Serializable, AbstractFacadeRemote<T>{
 
-public abstract class AbstractFacade<T> {
-
-    private final Class<T> entityClass;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
-    protected abstract EntityManager getEntityManager();
+    public abstract EntityManager getEntityManager();
 
     public void create(T entity) {
         getEntityManager().persist(entity);
@@ -56,11 +62,11 @@ public abstract class AbstractFacade<T> {
         return ((Long) q.getSingleResult()).intValue();
     }
 
-    protected CriteriaQuery filterQuery(CriteriaQuery query, Root<T> rt) {
+    public CriteriaQuery filterQuery(CriteriaQuery query, Root<T> rt) {
         return query;
     }
 
-    protected CriteriaQuery orderByQuery(CriteriaQuery query, Root<T> rt) {
+    public CriteriaQuery orderByQuery(CriteriaQuery query, Root<T> rt) {
         return query;
     }
 

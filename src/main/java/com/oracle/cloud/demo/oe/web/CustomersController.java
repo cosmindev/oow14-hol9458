@@ -1,12 +1,14 @@
 package com.oracle.cloud.demo.oe.web;
 
 import com.oracle.cloud.demo.oe.sessions.CustomersFacade;
+import com.oracle.cloud.demo.oe.sessions.CustomersFacadeRemote;
 import com.oracle.cloud.demo.oe.entities.Customer;
 import com.oracle.cloud.demo.oe.web.util.JsfUtil;
 import com.oracle.cloud.demo.oe.web.util.PaginationHelper;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -25,7 +27,7 @@ public class CustomersController implements Serializable {
     private Customer current;
     private DataModel items = null;
     @EJB
-    private CustomersFacade ejbFacade;
+    private CustomersFacadeRemote<Customer> ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private String searchByEmail;
@@ -42,7 +44,7 @@ public class CustomersController implements Serializable {
     }
 
     private CustomersFacade getFacade() {
-        return ejbFacade;
+        return (CustomersFacade) ejbFacade;
     }
 
     public PaginationHelper getPagination() {

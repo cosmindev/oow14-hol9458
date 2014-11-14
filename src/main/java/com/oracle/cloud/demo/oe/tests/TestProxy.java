@@ -9,7 +9,9 @@ import javax.ejb.Stateless;
 import com.oracle.cloud.demo.oe.entities.Customer;
 import com.oracle.cloud.demo.oe.entities.Order;
 import com.oracle.cloud.demo.oe.sessions.CustomersFacade;
+import com.oracle.cloud.demo.oe.sessions.CustomersFacadeRemote;
 import com.oracle.cloud.demo.oe.sessions.OrdersFacade;
+import com.oracle.cloud.demo.oe.sessions.OrdersFacadeRemote;
 
 /**
  * Session Bean implementation class TestProxy
@@ -21,9 +23,9 @@ public class TestProxy implements TestProxyRemote, TestProxyLocal {
 	 * Default constructor.
 	 */
 	@EJB
-	CustomersFacade customers;
+	CustomersFacadeRemote<Customer> customers;
 	@EJB
-	OrdersFacade orders;
+	OrdersFacadeRemote orders;
 
 	public TestProxy() {
 		// TODO Auto-generated constructor stub

@@ -3,10 +3,14 @@ package com.oracle.cloud.demo.oe.rest;
 import com.oracle.cloud.demo.oe.entities.Order;
 import com.oracle.cloud.demo.oe.entities.OrderItem;
 import com.oracle.cloud.demo.oe.sessions.CheckoutSessionBean;
+import com.oracle.cloud.demo.oe.sessions.CheckoutSessionBeanRemote;
 import com.oracle.cloud.demo.oe.sessions.OrdersFacade;
+import com.oracle.cloud.demo.oe.sessions.OrdersFacadeRemote;
 import com.oracle.cloud.demo.oe.web.util.BasketItem;
+
 import java.util.Collections;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
@@ -21,10 +25,10 @@ import javax.ws.rs.PathParam;
 public class OrdersResource {
 
     @EJB
-    OrdersFacade orderDao;
+    OrdersFacadeRemote orderDao;
 
     @EJB
-    CheckoutSessionBean checkoutBean;
+    CheckoutSessionBeanRemote checkoutBean;
 
     @GET
     @Path("fromCustomer/{customerEmail}")

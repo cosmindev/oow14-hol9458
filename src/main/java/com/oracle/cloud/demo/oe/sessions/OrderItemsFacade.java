@@ -6,8 +6,12 @@
 
 package com.oracle.cloud.demo.oe.sessions;
 
+import java.io.Serializable;
+
 import com.oracle.cloud.demo.oe.entities.OrderItem;
+
 import javax.ejb.Stateless;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,12 +20,12 @@ import javax.persistence.PersistenceContext;
  * @author bruno
  */
 @Stateless
-public class OrderItemsFacade extends AbstractFacade<OrderItem> {
+public class OrderItemsFacade extends AbstractFacade<OrderItem> implements Serializable, OrderItemsFacadeRemote<OrderItem>{
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    protected EntityManager getEntityManager() {
+	public EntityManager getEntityManager() {
         return em;
     }
 

@@ -1,12 +1,14 @@
 package com.oracle.cloud.demo.oe.web;
 
 import com.oracle.cloud.demo.oe.sessions.OrdersFacade;
+import com.oracle.cloud.demo.oe.sessions.OrdersFacadeRemote;
 import com.oracle.cloud.demo.oe.entities.Order;
 import com.oracle.cloud.demo.oe.web.util.JsfUtil;
 import com.oracle.cloud.demo.oe.web.util.PaginationHelper;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -25,7 +27,7 @@ public class OrdersController implements Serializable {
     private Order current;
     private DataModel items = null;
     @EJB
-    private OrdersFacade ejbFacade;
+    private OrdersFacadeRemote ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private String searchByCustomerEmail;
@@ -39,7 +41,7 @@ public class OrdersController implements Serializable {
     }
 
     private OrdersFacade getFacade() {
-        return ejbFacade;
+        return (OrdersFacade) ejbFacade;
     }
 
     public PaginationHelper getPagination() {
@@ -187,7 +189,7 @@ public class OrdersController implements Serializable {
     }
 
     public Order getOrders(java.lang.Long id) {
-        return ejbFacade.find(id);
+        return (Order) ejbFacade.find(id);
     }
 
     public void setSelected(Order order) {

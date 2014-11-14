@@ -1,14 +1,18 @@
 package com.oracle.cloud.demo.oe.web.util;
 
 import com.oracle.cloud.demo.oe.entities.ProductInformation;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
+
+import javax.enterprise.context.SessionScoped;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@SessionScoped
 public class BasketItem implements Serializable {
 
     @NotNull

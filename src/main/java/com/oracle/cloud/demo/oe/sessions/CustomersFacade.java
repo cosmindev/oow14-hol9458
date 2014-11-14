@@ -1,7 +1,11 @@
 package com.oracle.cloud.demo.oe.sessions;
 
+import java.io.Serializable;
+
 import com.oracle.cloud.demo.oe.entities.Customer;
+
 import javax.ejb.Stateless;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -9,14 +13,14 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 @Stateless
-public class CustomersFacade extends AbstractFacade<Customer> {
+public class CustomersFacade extends AbstractFacade<Customer> implements Serializable, CustomersFacadeRemote<Customer>{
 
     @PersistenceContext
     private EntityManager em;
     private String filterByEmail;
 
     @Override
-    protected EntityManager getEntityManager() {
+	public EntityManager getEntityManager() {
         return em;
     }
 
@@ -29,7 +33,7 @@ public class CustomersFacade extends AbstractFacade<Customer> {
     }
 
     @Override
-    protected CriteriaQuery filterQuery(CriteriaQuery query, Root<Customer> rt) {
+    public CriteriaQuery filterQuery(CriteriaQuery query, Root<Customer> rt) {
         if (filterByEmail == null) {
             return query;
         }
